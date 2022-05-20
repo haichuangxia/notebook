@@ -1,0 +1,1 @@
+keras.application自带了DenseNet的实现。官方文档链接在：[tf.keras.applications.DenseNet](https://www.tensorflow.org/api_docs/python/tf/keras/applications/densenet)
