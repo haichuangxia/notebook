@@ -1,4 +1,13 @@
-在本地的项目中可以添加远程的gitee或者github仓库
+&emsp;&emsp;在本地的项目中可以添加远程的gitee或者github仓库，首先要配置本地与服务器的通信，其基本的步骤为：
+``` mermaid
+flowchart LR
+config[配置用户信息]-->ssh[本地生成ssh公钥]-->addshh[服务器添加ssh公钥]-->test[测试连接]
+```
+&emsp;&emsp;在成功进行通信之后，则需要在本地添加远程仓库，其基本步骤为：
+``` mermaid
+flowchart LR
+establish[服务器创建远程仓库]-->copy[复制远程仓库url]-->add[本地添加远程仓库]
+```
 ### 1. 配置git用户信息
 &emsp;&emsp;创建仓库之后需要对仓库或者对整体系统的所有仓库进行配置，有两种配置模式：
 
