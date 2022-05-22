@@ -36,18 +36,20 @@ git config user.email example@gmail.com
 &emsp;&emsp;使用` ssh -T git@gitee.com`命令或者`ssh -T git@github.com`命令测试gitee或者github的连接。
 ### 3. 本地添加远程仓库
 #### 1. github创建仓库
-&emsp;&emsp;创建仓库之后，复制仓库的链接。
-#### 2. 本地添加远程仓库
+&emsp;&emsp;创建仓库之后，复制仓库的链接。主要使用`git remote add [] <name> <url>`命令添加远程仓库。
+### 4. 远程仓库操作
 &emsp;&emsp;本地使用`git remote`命令进行远程仓库的管理。主要的操作有：
 
-| 命令                                    | 用法                         |
-| --------------------------------------- | ---------------------------- |
-| `git remote --verbose`                  | 详细查看当前的远程仓库的信息 |
-| `git remote add [] <name> <url>`        | 添加远程仓库                 |
-| `git remote rename <oldname> <newname>` | 更改远程分支的名称           |
-| `git remote remove <name>`              | 删除远程分支                 |
-
-&emsp;&emsp;主要使用`git remote add [] <name> <url>`命令添加远程仓库。
+| 命令                                    | 用法                                   |
+| --------------------------------------- | -------------------------------------- |
+| `git remote --verbose`                  | 详细查看当前的远程仓库的信息           |
+| `git remote show <remote>`              | 查看某个远程分支仓库remote的信息       |
+| `git remote add [] <name> <url>`        | 添加远程仓库                           |
+| `git remote rename <oldname> <newname>` | 更改远程分支的名称                     |
+| `git remote remove <name>`              | 删除远程分支                           |
+| `git push <remote> <branch>`            | 删将本地分支branch推送到远程仓库remote |
+| `git fetch <remote>`                    | 从远程仓库拉取本地没有的内容           |
+| `git merge`                             | 将多个分支合并成一个                   |
 
 ### 4. 官方文档
 1. [`git remote`命令官方文档](https://git-scm.com/docs/git-remote)
