@@ -58,6 +58,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 | ------------------------ | ---------------------------------------------------------------------------------------- |
 | `git checkout -- <file>` | 撤销工作区的修改，清空工作区，也就是文件内容回发生变化，回退到上一个版本，相当于没有修改 |
 | `git reset HEAD <file>`  | 清除暂存区，相当于没有add，文件的内容不发生变化                                          |
+| `git reset <commit id>`  | 版本回退到指定的commit，可以用来撤销commit操作                                           |
 
 ### 1. 撤销单个文件的修改
 &emsp;&emsp;可以使用`git checkout -- <file>`命令来撤销所作的修改。有一点需要注意：使用该命令会撤销所有的修改，将文件还原到最近一次**commit**或者**add**时的状态(HEAD).且该命令不可恢复。
@@ -85,6 +86,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 | ------------------------------- | ------------------------------------------------------------- |
 | `git push <alias> <branch>`     | 将当前版本推送到远程仓库                                      |
 | `git push -u <remote> <branch>` | 添加参数u，表示关联，后续可以直接`git push`进行推送，简化命令 |  |
+
+注意：使用`git push`命令推送到远程仓库`origin`时，如果本地分支是`master`,则会推送到远程的`master`分支，如果本地分支是`dev`,则推送到远程仓库的`dev`分支，不管远程仓库是否已经创建了`master`和`dev`分支。
 ## Reference
 1. [git init Reference](https://git-scm.com/docs/git-init)
 2. [git clone Reference](https://git-scm.com/docs/git-clone)
