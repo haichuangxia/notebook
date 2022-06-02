@@ -22,7 +22,7 @@ f30ab (HEAD -> master, testing) 最近一次提交
 
 `git checkout -b <branch>`命令可以创建并进入一个分支，相当于`git branch <branch>`+`git checkout <branch>`.
 
-新版本也用`git swithc -c <branch>`命令来创建并切换到新分支。
+新版本也用`git switch -c <branch>`命令来创建并切换到新分支。
 ## 2. 分支的操作
 ### 1. 删除分支
 使用`git branch -d <branch>`可以删除一个分支。
