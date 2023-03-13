@@ -68,13 +68,9 @@ Point *pa[2];
 
 以指针作为函数参数的两种情况
 
-![image-20221205193016964](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221205193018.png)
-
 ### 指针作为函数返回值
 
 错误的使用
-
-![image-20221205194211211](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221205194212.png)
 
 不要返回非静态,非全局的变量地址作为指针.如果变量销毁了,那么返回的地址就全无意义.
 
@@ -92,19 +88,27 @@ new得到的,不用的时候需要用delete手动删除.如果程序一直执行
 
 函数指针是c语言中实现函数回调的方法.复杂函数时,建议使用函数对象进行回调.
 
-![image-20221205204851752](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221205204853.png)
+
 
 使用函数指针实现函数回调的实例:
 函数回调:定义的时候,并不知道后面使用哪个具体的函数
- ![image-20221205205127506](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221205205128.png)
-![image-20221205205205827](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221205205207.png)
 
 delete会释放掉通过new申请来的内存空间
 
-![image-20221205210922682](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221205210924.png)
+
 
 # 动态内存分配
 
 一般来说,构造函数中申请内存(new),在析构函数中释放内存(delete)
 
 vector:就是一个封装好的动态数组,可以检查越界等
+
+
+
+# 引用
+
+## 对指针的引用
+
+**引用不是对象，没有地址**，引用只是一个别名，因此并没有指向引用的指针这种说法
+
+指针的引用：`*&`,&表示变量是一个引用，*表示这是一个指针。
