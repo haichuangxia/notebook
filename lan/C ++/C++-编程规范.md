@@ -1,0 +1,47 @@
+# 基本系统数据类型
+基本系统数据类型(primitive):基本系统数据类型在`sys/types.h`头文件中一般由`typedef`来定义.
+
+使用基本系统数据类型的意义:不同操作系统,基本数据类型的长度不同.如int一般是32位的,但是在过去的16位的操作系统中,int是16位.
+
+使用基本系统数据类型可以方便修改,减少代码改动,因为只需要修改并编译基本系统数据类型的声明就行.不同的操作系统上定义的基本系统数据类型不同,如`size_t`在32位系统上定义为`unsigned int`,而在64位系统上定义为`unsigned long`,而`int`类型现在一般都是32位的.好处在于声明的数据类型与操作系统可寻址内存区域一致.
+
+此外,还有一个好处是,像是ipv4是32位地址,而int一般是32位的,但是将来可能是64,因此使用`uint32_t`数据类型可以很方便移植.
+
+操作系统定义的基本系统数据类型一般会加后缀`_t`.
+
+## POSIX
+POSIX(Portable Operating System Interface,可移植操作系统接口):为Unix系操作系统设置的标准,定义了一些数据类型,这些数据类型主要在`sys/types.h`,`sys/socket.h`,`netinet/in.h`
+
+POSIX中定义的常见数据类型有:
+![posix定义的数据类型](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221018160026.png)
+
+# 初始化问题
+声明变量或结构体之后,该变量可能会存在脏数据.因此声明结构体等时,最好进行初始化.如在socket编程对地址进行初始化时,可以使用`bzero()`函数和`memset()`对其进行清0操作.
+
+## bzero()
+``` c
+#include<cstring>
+/**
+brief 置字符串的前n个Byte为0
+s:字符串指针
+n:需要置0的前多少个字节
+*/
+
+extern void bzero(void *s, int n);
+```
+
+## memset()
+``` c++
+#include<cstring>
+/**
+brief 把s所指内存区域的前n个字节设置成int _c的值
+*_s:一段内存区域
+_c:需要填充成的数值
+_n:需要填充多少个字节
+*/
+extern void *memset (void *__s, int __c, size_t __n) __THROW __nonnull ((1));
+```
+
+缓冲区问题:
+
+涉及到缓冲区的所有权转移,使用使用右值引用,也适合使用移动构造函数
