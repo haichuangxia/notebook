@@ -242,3 +242,67 @@ UDP 套接字属于`unconnected socket`.
 但是这样有一个问题:如果一次有多个数据要发送,则需调用多次sendto进行传输.这种情况下,使用`connected socket`就将会减少多次调用sendto产生的连接注册/取消的代价.
 
 即:调用`connect()`函数向UDP套接字注册IP和端口等地址信息,而不是要和对方UDP套接字创建连接.
+
+
+
+# 异步IO
+
+## select函数
+
+select函数用于在**非阻塞**中，当一个套接字或一组套接字有信号时通知你，系统提供select函数来实现多路复用输入/输出模型，原型：    
+
+``` c
+#include <sys/time.h>
+#include <unistd.h>
+/**
+@param int maxfd:maxfd是需要监视的最大的文件描述符值+1
+@param fd_set *rdset:可读文件描述符集合
+@param fd_set *wrset：可写文件描述符集合
+@param fd_set *exset：异常文件描述符集合
+@param struct timeval结构用于描述一段时间长度，如果在这个时间内，需要监视的描述符没有事件发生则函数返回，返回值为0。(如时间是超时时间设置为5s)
+*/
+int select(int maxfd,fd_set *rdset,fd_set *wrset,fd_set *exset,struct timeval *timeout);
+```
+
+ 重要的数据结构：
+
+是一组文件描述字(fd)的集合，**它用一位来表示一个****fd**
+
+对于fd_set类型通过下面四个宏来操作：
+
+- FD_ZERO(fd_set *fdset);**将指定的文件描述符集清空，在对文件描述符集合进行设置前，必须对其进行初始化**，如果不清空，由于在系统分配内存空间后，通常并不作清空处理，所以结果是不可知的。
+
+- FD_SET(int fd, fd_set * fdsetp);用于在文件描述符集合中**增加**一个新的文件描述符。
+
+- FD_CLR(int fd, fd_set * fdsetp)用于在文件描述符集合中**删除**一个文件描述符。
+
+- FD_ISSET(int fd,fd_set *fdset);用于测试指定的文件描述符是否在该集合中。
+
+errno的含义：
+
+| 值    | 含义           |
+| ----- | -------------- |
+| EINTR | 接收到中断信号 |
+|       |                |
+|       |                |
+
+example：
+
+
+
+# 重要数据结构
+
+## msghdr
+
+struct msghdr：存储接收或者要发送的消息的元数据，如地址信息，消息指针等
+
+iovec：用于io的数据结构，成员主要是数据指针和数据的长度
+
+``` c
+struct iovec
+  {
+    void *iov_base;	/* Pointer to data.  */
+    size_t iov_len;	/* Length of data.  */
+  };
+```
+

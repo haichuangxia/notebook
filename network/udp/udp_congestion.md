@@ -31,9 +31,6 @@
 
 - fast recovery
 
-  ![image-20221017204638493](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221017204645.png)
-
-![image-20221017204518540](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221017204519.png)
 
 算法的实现:
 

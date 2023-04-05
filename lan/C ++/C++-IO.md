@@ -21,3 +21,21 @@
 
 使用`tie`可以将多个流关联到一起.
 
+# 一些输入输出的一般写法
+
+- 使用`printf`函数输出指定长度的字符串：
+
+    ``` c
+    int len=10;
+    char str[20]="123456789abcdef";
+    printf("%.*s\n",len,str);
+    // output:123456789a
+	```
+
+- 使用`fprintf`函数将字符串输出到指定文件
+
+  ``` c
+  fprintf(stderr,"this is an error.\n");
+  ```
+
+  

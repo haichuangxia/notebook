@@ -32,7 +32,7 @@ quic的任务:
 1. 最低有效位:表明流的发起者,
 2. 次低有效位:表明流的方向(单向 OR 双向)
 
-![stream type](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221018154530.png)
+
 
 ## 流中收发数据
 
@@ -77,7 +77,7 @@ quic的任务:
 ## 发送端有限状态机
 发送端的有限状态机示意图为:
 
-![States for sending parts of streams](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221018154542.png) 
+
 
 
 各个状态的作用为:
@@ -90,7 +90,7 @@ quic的任务:
 ## 接收端有限状态机
 接收端的有限状态机状态为：
 
-![接收端有限状态机](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221018154554.png) 
+
 
 **在流创建之前，所有同类型的，StreamID数值更小的流必须被创建。**
 
@@ -216,7 +216,6 @@ connection id不能包含任何可以被第三方获取到的信息。
 - 数据传输的参数
 
 握手过程图为：
-![simplified QUIC Handshake](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/2022/20221018154606.png)
 
 **Handshake**和**Initial**都是一种**packet**。
 
