@@ -64,4 +64,3 @@ Convolution3 --> output
          & connection=(5×5)×(28×28)×6=19600
          \end{aligned}
          $$
-         

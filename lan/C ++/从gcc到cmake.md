@@ -16,6 +16,28 @@ gcc通常用来编译c文件,g++通常用来编译c++文件.gcc/g++的常用选�
 | -Wall     | 显示所有的警告信息                                           |
 | -g        | 编译时添加调试信息                                           |
 
+
+
+- 编译时，链接顺序很重要
+
+- 先输出还是先链接，这个顺序也有点意思
+
+  ​		
+
+  > ‘g++ $^ -lcrypto -lpthread -lgtest -o $@ ’ :报错：
+  >
+  > g++ key_manager.c crypto.c key_manager_test.cpp -lcrypto -lpthread -lgtest -o key_manager_test.o 
+  > /usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/libgtest.a(gtest-all.cc.o): undefined reference to symbol 'pthread_getspecific@@GLIBC_2.2.5'
+  > /usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/libpthread.so: error adding symbols: DSO missing from command line
+  > collect2: error: ld returned 1 exit status
+  > make: *** [Makefile:2: key_manager_test.o] Error 1
+
+  把pthread库放到后面就可以了：
+
+  `g++ $^ -o $@  -lcrypto -lgtest -lpthread`
+
+解释：gtest库依赖于pthread库，在链接时，首先链接gtest，gtest要使用的再去找pthread库，因此写命令时，需要将gtest写再pthread前面。
+
 # makefile文件进行编译
 
 如果用gcc，需要手动的进行编译，如果有成百上千个c文件，那么手动输入命令十分麻烦。因此一个思路是，通过在一个文本文件中说明对哪些需要执行什么操作，需要使用到哪些以来，然后根据这个文件自动的生成命令区编译c文件。根据这种思路，我们把这种写明了编译信息的文件就称为`makefie`,通过`make`命令就根据目录下的`makefile`文件自动生成编译命令进行编译.
@@ -62,7 +84,7 @@ command默认是并行执行的,没有继承关系,如果要让命令顺序执�
 | txt = Hello World <br />test:<br />     @echo $(txt); \ <br/>     @echo \$\$HOME | 使用`$`引用自定义的变量.使用`$$`引用shell变量                |
 | `$@`                                                         | 指代当前的`target`                                           |
 | `$<`                                                         | 指代第一个prerequisity.(前置条件)                            |
-| `$?`                                                         | 指代所有前置条件                                             |
+| `$^`                                                         | 指代所有前置条件                                             |
 | `$*`                                                         | 指代`%`表示的内容                                            |
 | `$(@D) 和 $(@F)`                                             | `$(@D)` 和 `$(@F)` 分别指向 `$@` 的目录名和文件名。比如，`$@`是 `src/input.c`，那么`$(@D)` 的值为 `src` ，`$(@F)` 的值为 `input.c` |
 | D和F                                                         | 放在目标后,表示对象所在文件夹和文件名                        |

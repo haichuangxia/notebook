@@ -180,11 +180,11 @@ Verified OK
 
 数字签名的一般流程：使用私钥对消息只要进行签名，使用公钥进行解密并重新进行计算摘要，比较两者是否相等。
 
-![image-20200203210110403](https://gitee.com/ahuntsun/BlogImgs/raw/master/计算机网络/7.3.数字签名/1.png)
+![image-20200203210110403](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/self/202304232219637.png)
 
 证书的使用流程
 
-![image-20200206155804062](https://gitee.com/ahuntsun/BlogImgs/raw/master/计算机网络/7.3.数字签名/3.png)
+![image-20200206155804062](https://qingbin.oss-cn-chengdu.aliyuncs.com/img/self/202304232221933.png)
 
 参考
 

@@ -95,3 +95,12 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
 
 
 
+# aes的填充模式
+
+根据明文的长度，可以选择是否进行填充
+
+- blocksize的整数倍：可以不填充
+- blocksize的非整数倍：必须进行填充
+
+值得注意的是，如果使用填充，即便是blocksize的整数倍，也有可能会进行填充。
+

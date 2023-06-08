@@ -94,6 +94,35 @@ SSH-keygen参数
 1. 确保当前可以使用密码或者密钥登陆:检查服务器`/etc/ssh/sshd_config`中的配置项,否则会出现拒绝连接的情况
 2. 使用`ssh-copy-id -i x/x.pub user@host`的命令添加公钥到服务器
 
+
+
+#### 更新密钥
+
+当之前已经与一个主机建立连接，则后面要想使用ssh-copy-id将公钥复制过去，就会报错：
+
+``` shell
+/usr/bin/ssh-copy-id: ERROR: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ERROR: @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+ERROR: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ERROR: IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+ERROR: Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+ERROR: It is also possible that a host key has just been changed.
+ERROR: The fingerprint for the ECDSA key sent by the remote host is
+ERROR: SHA256:ca4JSnnfFP6lCyf+EY0fMMXAFiVVuDQEthevukwoMMQ.
+ERROR: Please contact your system administrator.
+ERROR: Add correct host key in /home/qing/.ssh/known_hosts to get rid of this message.
+ERROR: Offending ECDSA key in /home/qing/.ssh/known_hosts:5
+ERROR:   remove with:
+```
+
+此时可以使用命令将之前已有的记录删除。，如：
+
+``` shell
+ ssh-keygen -f "known_hosts" -R "127.0.0.1"
+```
+
+
+
 ### 使用公钥方式连接远程服务器
 使用`ssh user@host`命令即可使用公钥认证方式连接远程服务器
 
